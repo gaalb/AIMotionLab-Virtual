@@ -4,6 +4,8 @@ import mujoco
 from typing import Optional
 
 from aiml_virtual.simulated_object import simulated_object
+from aiml_virtual.controller import controller
+from aiml_virtual.trajectory import trajectory
 
 
 class MovingObject(simulated_object.SimulatedObject):
@@ -12,15 +14,14 @@ class MovingObject(simulated_object.SimulatedObject):
 
     def __init__(self):
         super().__init__()
-        pass
+        self.controllers: list[controller.Controller] = []  # storage for containers to switch between
+        self.controller: Optional[controller.Controller] = None
+        self.trajectory: Optional[trajectory.Trajectory] = None
 
     @classmethod
     def get_identifiers(cls) -> Optional[list[str]]:
+        # returning None opts out of XML parsing
         return None
-
-    @abstractmethod
-    def bind_to_model(self, model: mujoco.MjModel):
-        pass
 
     @abstractmethod
     def bind_to_data(self, data: mujoco.MjData):

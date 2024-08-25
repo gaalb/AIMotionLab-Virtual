@@ -38,8 +38,12 @@ reformálni, hogy ne dict-ben legyenek a cuccok, mert egy rakás KeyError-hoz ve
 ugyanezeknél a típusokat is végig kéne venni
 update_controller_type-t is meg kellhet majd csinálni, ezt meg kell nézni a wikiből
 *****************************************************
-mi lenne a clean megoldás?
-először is rugalmasabbra átalakítom simulatedobject-et, és hozzá igazítom bicycle-t
+szépen sorban:
+-mappába rendezni szépen
+-szétszedni a crazyfliet és a bumblebee-t
+-type hint-eket rendesen megcsinálni, és kommentezni (lesz rá még second pass a docstring írásnál)
+-egységesíteni minden movingobject-hez tartozó dolgot: trajectory, controller, stb
+-megcsinálni a sphinx dolgokat
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 

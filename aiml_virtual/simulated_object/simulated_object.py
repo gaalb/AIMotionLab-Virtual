@@ -50,9 +50,8 @@ class SimulatedObject(ABC):
         self.model: Optional[mujoco.MjModel] = None
         self.data: Optional[mujoco.MjData] = None
 
-    @abstractmethod
-    def bind_to_model(self, model: mujoco.MjModel):
-        pass
+    def bind_to_model(self, model: mujoco.MjModel) -> None:
+        self.model = model
 
     @abstractmethod
     def bind_to_data(self, data: mujoco.MjData):

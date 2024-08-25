@@ -64,6 +64,3 @@ class Bicycle(moving_object.MovingObject):
         self.ctrl = self.actr.ctrl
         self.sensor = data.sensor(self.name + "_velocimeter").data
 
-    def bind_to_model(self, model: mujoco.MjModel):
-        self.model = model
-

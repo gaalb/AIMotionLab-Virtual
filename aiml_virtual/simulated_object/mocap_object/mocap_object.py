@@ -15,11 +15,8 @@ class MocapObject(simulated_object.SimulatedObject):
 
     @classmethod
     def get_identifiers(cls) -> Optional[list[str]]:
+        # returning None opts out of XML parsing
         return None
-
-    @abstractmethod
-    def bind_to_model(self, model: mujoco.MjModel):
-        pass
 
     @abstractmethod
     def bind_to_data(self, data: mujoco.MjData):

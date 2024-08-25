@@ -43,53 +43,53 @@
 				<geom name="Bicycle_2_wheelr" type="cylinder" size="0.04 0.015" pos="-0.1 0 0" euler="1.571 0 0" material="material_check" />
 			</body>
 		</body>
-		<body name="Drone_0" pos="0 0 1" quat="0 0 0 1">
-			<geom name="Drone_0_body" type="mesh" mesh="crazyflie_body" rgba="0.5 0.5 0.5 1" />
-			<geom name="Drone_0_4_motormounts" type="mesh" mesh="crazyflie_4_motormounts" rgba="0.5 0.5 0.5 1" />
-			<geom name="Drone_0_4_motors" type="mesh" mesh="crazyflie_4_motors" rgba="0.5 0.5 0.5 1" />
+		<body name="Crazyflie_0" pos="0 0 1" quat="0 0 0 1">
+			<geom name="Crazyflie_0_body" type="mesh" mesh="crazyflie_body" rgba="0.5 0.5 0.5 1" />
+			<geom name="Crazyflie_0_4_motormounts" type="mesh" mesh="crazyflie_4_motormounts" rgba="0.5 0.5 0.5 1" />
+			<geom name="Crazyflie_0_4_motors" type="mesh" mesh="crazyflie_4_motors" rgba="0.5 0.5 0.5 1" />
 			<inertial pos="0.0 0.0 0.0" diaginertia="1.4e-5 1.4e-5 2.17e-5" mass="0.028" />
-			<joint name="Drone_0" type="free" />
-			<site name="Drone_0_cog" pos="0 0 0" size="0.005" />
-			<body name="Drone_0_prop0">
-				<joint name="Drone_0_prop0" axis="0 0 1" pos="0.03275 -0.03275 0.0223" />
-				<geom name="Drone_0_prop0" type="mesh" mesh="crazyflie_ccw_prop" mass="0.00001" pos="0.03275 -0.03275 0.0223" rgba="0.1 0.1 0.1 1.0" />
+			<joint name="Crazyflie_0" type="free" />
+			<site name="Crazyflie_0_cog" pos="0 0 0" size="0.005" />
+			<body name="Crazyflie_0_prop0">
+				<joint name="Crazyflie_0_prop0" axis="0 0 1" pos="0.03275 -0.03275 0.0223" />
+				<geom name="Crazyflie_0_prop0" type="mesh" mesh="crazyflie_ccw_prop" mass="0.00001" pos="0.03275 -0.03275 0.0223" rgba="0.1 0.1 0.1 1.0" />
 			</body>
-			<site name="Drone_0_prop0" pos="0.03275 -0.03275 0.0223" size="0.0001" />
-			<body name="Drone_0_prop1">
-				<joint name="Drone_0_prop1" axis="0 0 1" pos="-0.03275 -0.03275 0.0223" />
-				<geom name="Drone_0_prop1" type="mesh" mesh="crazyflie_cw_prop" mass="0.00001" pos="-0.03275 -0.03275 0.0223" rgba="0.1 0.1 0.1 1.0" />
+			<site name="Crazyflie_0_prop0" pos="0.03275 -0.03275 0.0223" size="0.0001" />
+			<body name="Crazyflie_0_prop1">
+				<joint name="Crazyflie_0_prop1" axis="0 0 1" pos="-0.03275 -0.03275 0.0223" />
+				<geom name="Crazyflie_0_prop1" type="mesh" mesh="crazyflie_cw_prop" mass="0.00001" pos="-0.03275 -0.03275 0.0223" rgba="0.1 0.1 0.1 1.0" />
 			</body>
-			<site name="Drone_0_prop1" pos="-0.03275 -0.03275 0.0223" size="0.0001" />
-			<body name="Drone_0_prop2">
-				<joint name="Drone_0_prop2" axis="0 0 1" pos="-0.03275 0.03275 0.0223" />
-				<geom name="Drone_0_prop2" type="mesh" mesh="crazyflie_ccw_prop" mass="0.00001" pos="-0.03275 0.03275 0.0223" rgba="0.1 0.1 0.1 1.0" />
+			<site name="Crazyflie_0_prop1" pos="-0.03275 -0.03275 0.0223" size="0.0001" />
+			<body name="Crazyflie_0_prop2">
+				<joint name="Crazyflie_0_prop2" axis="0 0 1" pos="-0.03275 0.03275 0.0223" />
+				<geom name="Crazyflie_0_prop2" type="mesh" mesh="crazyflie_ccw_prop" mass="0.00001" pos="-0.03275 0.03275 0.0223" rgba="0.1 0.1 0.1 1.0" />
 			</body>
-			<site name="Drone_0_prop2" pos="-0.03275 0.03275 0.0223" size="0.0001" />
-			<body name="Drone_0_prop3">
-				<joint name="Drone_0_prop3" axis="0 0 1" pos="0.03275 0.03275 0.0223" />
-				<geom name="Drone_0_prop3" type="mesh" mesh="crazyflie_cw_prop" mass="0.00001" pos="0.03275 0.03275 0.0223" rgba="0.1 0.1 0.1 1.0" />
+			<site name="Crazyflie_0_prop2" pos="-0.03275 0.03275 0.0223" size="0.0001" />
+			<body name="Crazyflie_0_prop3">
+				<joint name="Crazyflie_0_prop3" axis="0 0 1" pos="0.03275 0.03275 0.0223" />
+				<geom name="Crazyflie_0_prop3" type="mesh" mesh="crazyflie_cw_prop" mass="0.00001" pos="0.03275 0.03275 0.0223" rgba="0.1 0.1 0.1 1.0" />
 			</body>
-			<site name="Drone_0_prop3" pos="0.03275 0.03275 0.0223" size="0.0001" />
+			<site name="Crazyflie_0_prop3" pos="0.03275 0.03275 0.0223" size="0.0001" />
 		</body>
 	</worldbody>
 	<actuator>
 		<motor name="Bicycle_0_actr" joint="Bicycle_0_wheelr" />
 		<motor name="Bicycle_1_actr" joint="Bicycle_1_wheelr" />
 		<motor name="Bicycle_2_actr" joint="Bicycle_2_wheelr" />
-		<general site="Drone_0_prop0" name="Drone_0_actr0" gear=" 0 0 1 0 0 0.02514" ctrllimited="true" ctrlrange="0 0.16" />
-		<general site="Drone_0_prop1" name="Drone_0_actr1" gear=" 0 0 1 0 0 -0.02514" ctrllimited="true" ctrlrange="0 0.16" />
-		<general site="Drone_0_prop2" name="Drone_0_actr2" gear=" 0 0 1 0 0 0.02514" ctrllimited="true" ctrlrange="0 0.16" />
-		<general site="Drone_0_prop3" name="Drone_0_actr3" gear=" 0 0 1 0 0 -0.02514" ctrllimited="true" ctrlrange="0 0.16" />
+		<general site="Crazyflie_0_prop0" name="Crazyflie_0_actr0" gear=" 0 0 1 0 0 0.02514" ctrllimited="true" ctrlrange="0 0.16" />
+		<general site="Crazyflie_0_prop1" name="Crazyflie_0_actr1" gear=" 0 0 1 0 0 -0.02514" ctrllimited="true" ctrlrange="0 0.16" />
+		<general site="Crazyflie_0_prop2" name="Crazyflie_0_actr2" gear=" 0 0 1 0 0 0.02514" ctrllimited="true" ctrlrange="0 0.16" />
+		<general site="Crazyflie_0_prop3" name="Crazyflie_0_actr3" gear=" 0 0 1 0 0 -0.02514" ctrllimited="true" ctrlrange="0 0.16" />
 	</actuator>
 	<sensor>
 		<velocimeter site="Bicycle_0_cog" name="Bicycle_0_velocimeter" />
 		<velocimeter site="Bicycle_1_cog" name="Bicycle_1_velocimeter" />
 		<velocimeter site="Bicycle_2_cog" name="Bicycle_2_velocimeter" />
-		<gyro site="Drone_0_cog" name="Drone_0_gyro" />
-		<framelinvel objtype="site" objname="Drone_0_cog" name="Drone_0_velocimeter" />
-		<accelerometer site="Drone_0_cog" name="Drone_0_accelerometer" />
-		<framepos objtype="site" objname="Drone_0_cog" name="Drone_0_posimeter" />
-		<framequat objtype="site" objname="Drone_0_cog" name="Drone_0_orimeter" />
-		<frameangacc objtype="site" objname="Drone_0_cog" name="Drone_0_ang_accelerometer" />
+		<gyro site="Crazyflie_0_cog" name="Crazyflie_0_gyro" />
+		<framelinvel objtype="site" objname="Crazyflie_0_cog" name="Crazyflie_0_velocimeter" />
+		<accelerometer site="Crazyflie_0_cog" name="Crazyflie_0_accelerometer" />
+		<framepos objtype="site" objname="Crazyflie_0_cog" name="Crazyflie_0_posimeter" />
+		<framequat objtype="site" objname="Crazyflie_0_cog" name="Crazyflie_0_orimeter" />
+		<frameangacc objtype="site" objname="Crazyflie_0_cog" name="Crazyflie_0_ang_accelerometer" />
 	</sensor>
 </mujoco>
