@@ -11,9 +11,9 @@ import pathlib
 import aiml_virtual.scene as scene
 import aiml_virtual.simulated_object.moving_object.bicycle as bicycle
 import aiml_virtual.simulator as simulator
-import aiml_virtual.simulated_object.moving_object.drone as drone
-import aiml_virtual.simulated_object.moving_object.crazyflie as cf
-import aiml_virtual.controller.drone_geom_controller as geom_ctrl
+import aiml_virtual.simulated_object.moving_object.drone.crazyflie as cf
+import aiml_virtual.simulated_object.moving_object.drone.bumblebee as bb
+from aiml_virtual.trajectory import dummy_drone_trajectory
 
 if __name__ == "__main__":
     project_root = pathlib.Path(__file__).parents[1].resolve().as_posix()
@@ -24,9 +24,12 @@ if __name__ == "__main__":
     scene.add_object(bike1, "0 1 0", "0 0 0 1", "0.5 0.5 0.5 1")
     bike2 = bicycle.Bicycle()
     scene.add_object(bike2, "0 -1 0", "0 0 0 1", "0.5 0.5 0.5 1")
-    drone = cf.Crazyflie()
-    drone.controller = geom_ctrl.GeomControl(drone.mass, drone.inertia, scene.model.opt.gravity)
-    scene.add_object(drone, "0 0 1", "0 0 0 1", "0.5 0.5 0.5 1")
+    cf0 = cf.Crazyflie()
+    cf0.trajectory = dummy_drone_trajectory.DummyDroneTrajectory()
+    scene.add_object(cf0, "0 0 1", "0 0 0 1", "0.5 0.5 0.5 1")
+    bb0 = bb.Bumblebee()
+    bb0.trajectory = dummy_drone_trajectory.DummyDroneTrajectory()
+    scene.add_object(bb0, "0 0 -1", "0 0 0 1", "0.5 0.5 0.5 1")
 
     sim = simulator.Simulator(scene, control_freq=500, target_fps=100)
     with sim.launch_viewer():

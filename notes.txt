@@ -41,12 +41,15 @@ update_controller_type-t is meg kellhet majd csinálni, ezt meg kell nézni a wi
 szépen sorban:
 -mappába rendezni szépen
 -szétszedni a crazyfliet és a bumblebee-t
+	-majdnem megvan, szét van szedve de még bele kell rakni a bumblebee-t
 -type hint-eket rendesen megcsinálni, és kommentezni (lesz rá még second pass a docstring írásnál)
 -egységesíteni minden movingobject-hez tartozó dolgot: trajectory, controller, stb
 -megcsinálni a sphinx dolgokat
+
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
-
+-controllernek más gainek kellenek szituációtól (dróntól) függően, de amúgy is jó lenne egy flexibilis beállítás->set_gains?
+TODO: dummy controllernek valami setup: tartson setpointot vagy valami hasonló?
 
 
 

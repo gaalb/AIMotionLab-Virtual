@@ -5,12 +5,12 @@ from aiml_virtual.controller import controller
 
 
 class GeomControl(controller.Controller):
-    def __init__(self, mass, inertia, gravity):
+    def __init__(self, mass, inertia, gravity, k_r=0.15, k_v=0.2, k_R=0.007, k_w=0.0015):
         super().__init__()
-        self.k_r = 0.15
-        self.k_v = 0.2
-        self.k_R = 0.007
-        self.k_w = 0.0015
+        self.k_r = k_r
+        self.k_v = k_v
+        self.k_R = k_R
+        self.k_w = k_w
         self.mass = mass
         self.inertia = inertia
         self.gravity = gravity

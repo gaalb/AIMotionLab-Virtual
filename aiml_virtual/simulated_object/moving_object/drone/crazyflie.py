@@ -4,10 +4,8 @@ from typing import Optional, Any
 from enum import Enum
 import numpy as np
 
-from aiml_virtual.simulated_object.moving_object import moving_object
-from aiml_virtual.controller import controller, drone_geom_controller
-from aiml_virtual.trajectory import trajectory, dummy_drone_trajectory
-from aiml_virtual.simulated_object.moving_object import moving_object, drone
+from aiml_virtual.simulated_object.moving_object.drone import drone
+from aiml_virtual.controller import drone_geom_controller
 
 
 class Crazyflie(drone.Drone):
@@ -15,7 +13,7 @@ class Crazyflie(drone.Drone):
     OFFSET = "0.03275"  # distance of the motor axies from the center of mass in each dimension
     OFFSET_Z = "0.0223"  # height of the motors
     MOTOR_PARAM = "0.02514"  # ratio of Z torque to thrust? TODO
-    MAX_THRUST = "0.16"
+    MAX_THRUST = "0.16"  # the maximum thrust each motor can generate
     MASS = "0.028"
     DIAGINERTIA = "1.4e-5 1.4e-5 2.17e-5"
     COG = "0.0 0.0 0.0"
@@ -38,6 +36,9 @@ class Crazyflie(drone.Drone):
     def get_identifiers(cls) -> Optional[list[str]]:
         # the identifiers to look for in the XML
         return ["Crazyflie", "cf", "crazyflie"]
+
+    def set_default_controller(self) -> None:
+        self.controller = drone_geom_controller.GeomControl(self.mass, self.inertia, self.model.opt.gravity)
 
     def create_xml_element(self, pos: str, quat: str, color: str) -> dict[str, list[ET.Element]]:
         # TODO: separate crazyflie and bumblebee elements and common parts (for simplicity, just doing crazyflie for now)
@@ -86,14 +87,14 @@ class Crazyflie(drone.Drone):
             prop_name = f"{name}_prop{i}"
             prop_body = ET.SubElement(drone, "body", name=prop_name)
             ET.SubElement(prop_body, "joint", name=prop_name, axis="0 0 1", pos=prop_pos[i])
-            ET.SubElement(drone, "site", name=prop_name, pos=prop_pos[i], size=prop_site_size)
             mesh = f"crazyflie_{propeller.dir_mesh}_prop"
+            ET.SubElement(prop_body, "geom", name=prop_name, type="mesh", mesh=mesh, mass=prop_mass,
+                          pos=prop_pos[i], rgba=Crazyflie.PROP_COLOR)
+            ET.SubElement(drone, "site", name=prop_name, pos=prop_pos[i], size=prop_site_size)
             actuator = ET.Element("general", site=prop_name, name=f"{name}_actr{i}",
                                   gear=f"0 0 1 0 0 {propeller.dir_str}{motor_param}",
                                   ctrllimited="true", ctrlrange=f"0 {max_thrust}")
             ret["actuator"].append(actuator)
-            ET.SubElement(prop_body, "geom", name=prop_name, type="mesh", mesh=mesh, mass=prop_mass,
-                          pos=prop_pos[i], rgba=Crazyflie.PROP_COLOR)
         ret["sensor"].append(ET.Element("gyro", site=site_name, name=name + "_gyro"))
         ret["sensor"].append(ET.Element("framelinvel", objtype="site", objname=site_name, name=name + "_velocimeter"))
         ret["sensor"].append(ET.Element("accelerometer", site=site_name, name=name + "_accelerometer"))

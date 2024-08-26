@@ -73,6 +73,10 @@ class Drone(moving_object.MovingObject):
         # returning None opts out of XML parsing
         return None
 
+    @abstractmethod
+    def set_default_controller(self) -> None:
+        pass
+
     def spin_propellers(self) -> None:
         if self.sensors["pos"][2] > 0.015:
             for propeller in self.propellers:
@@ -83,13 +87,18 @@ class Drone(moving_object.MovingObject):
     def update(self, mj_step_count: int, step: float) -> None:
         # todo: check this as compared to the original when cleaning up
         self.spin_propellers()
-        setpoint = self.trajectory.evaluate(self.state, mj_step_count, step, self.data.time)
-        self.ctrl_input = self.controller.compute_control(state=self.state, setpoint=setpoint, time=self.data.time)
-        motor_thrusts = self.input_matrix @ self.ctrl_input
-        for propeller, thrust in zip(self.propellers, motor_thrusts):
-            propeller.ctrl[0] = thrust
+        if self.trajectory:
+            setpoint = self.trajectory.evaluate(self.state, mj_step_count, step, self.data.time)
+            self.ctrl_input = self.controller.compute_control(state=self.state, setpoint=setpoint, time=self.data.time)
+            motor_thrusts = self.input_matrix @ self.ctrl_input
+            for propeller, thrust in zip(self.propellers, motor_thrusts):
+                propeller.ctrl[0] = thrust
 
     def bind_to_data(self, data: mujoco.MjData) -> None:
+        if self.model is None:
+            raise RuntimeError
+        if self.controller is None:
+            self.set_default_controller()
         self.data = data
         self.sensors["ang_vel"] = self.data.sensor(self.name + "_gyro").data
         self.sensors["vel"] = self.data.sensor(self.name + "_velocimeter").data
@@ -103,8 +112,7 @@ class Drone(moving_object.MovingObject):
             propeller.angle = propeller.qpos[0]
             propeller.ctrl = self.data.actuator(f"{self.name}_actr{i}").ctrl
             propeller.actr_force = self.data.actuator(f"{self.name}_actr{i}").force
-        self.controller = drone_geom_controller.GeomControl(self.mass, self.inertia, self.model.opt.gravity)  # TODO
-        self.trajectory = dummy_drone_trajectory.DummyDroneTrajectory()  # TODO
+
 
 
 
