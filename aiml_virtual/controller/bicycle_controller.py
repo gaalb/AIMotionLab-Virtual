@@ -6,4 +6,4 @@ class BicycleController(controller.Controller):
         super().__init__()
 
     def compute_control(self, *args, **kwargs) -> float:
-        return 0.1
+        return 0.02

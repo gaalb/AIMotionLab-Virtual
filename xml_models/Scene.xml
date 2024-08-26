@@ -15,7 +15,7 @@
 				<geom name="Bicycle_0_wheelr" type="cylinder" size="0.04 0.015" pos="-0.1 0 0" euler="1.571 0 0" material="material_check" />
 			</body>
 		</body>
-		<body name="Bicycle_1" pos="0 1 0" quat="0 0 0 1">
+		<body name="Bicycle_1" pos="0 1 0" quat="1 0 0 0">
 			<inertial pos="0 0 0" diaginertia=".01 .01 .01" mass="1.0" />
 			<joint name="Bicycle_1" type="free" />
 			<site name="Bicycle_1_cog" pos="0 0 0" />
@@ -29,7 +29,7 @@
 				<geom name="Bicycle_1_wheelr" type="cylinder" size="0.04 0.015" pos="-0.1 0 0" euler="1.571 0 0" material="material_check" />
 			</body>
 		</body>
-		<body name="Bicycle_2" pos="0 -1 0" quat="0 0 0 1">
+		<body name="Bicycle_2" pos="0 -1 0" quat="1 0 0 0">
 			<inertial pos="0 0 0" diaginertia=".01 .01 .01" mass="1.0" />
 			<joint name="Bicycle_2" type="free" />
 			<site name="Bicycle_2_cog" pos="0 0 0" />
@@ -43,7 +43,7 @@
 				<geom name="Bicycle_2_wheelr" type="cylinder" size="0.04 0.015" pos="-0.1 0 0" euler="1.571 0 0" material="material_check" />
 			</body>
 		</body>
-		<body name="Crazyflie_0" pos="0 0 1" quat="0 0 0 1">
+		<body name="Crazyflie_0" pos="1 0 1.5" quat="1 0 0 0">
 			<geom name="Crazyflie_0_body" type="mesh" mesh="crazyflie_body" rgba="0.5 0.5 0.5 1" />
 			<geom name="Crazyflie_0_4_motormounts" type="mesh" mesh="crazyflie_4_motormounts" rgba="0.5 0.5 0.5 1" />
 			<geom name="Crazyflie_0_4_motors" type="mesh" mesh="crazyflie_4_motors" rgba="0.5 0.5 0.5 1" />
@@ -71,7 +71,7 @@
 			</body>
 			<site name="Crazyflie_0_prop3" pos="0.03275 0.03275 0.0223" size="0.0001" />
 		</body>
-		<body name="Bumblebee_0" pos="0 0 -1" quat="0 0 0 1">
+		<body name="Bumblebee_0" pos="-1 0 0.5" quat="1 0 0 0">
 			<geom name="Bumblebee_0_body" pos="0.0132 0 0" type="mesh" quat="-0.7071067811865475 -0.0 0.0 0.7071067811865476" mesh="bumblebee_body" rgba="0.5 0.5 0.5 1" />
 			<inertial pos="0.0085 0.0 0.0" diaginertia="1.5e-3 1.45e-3 2.66e-3" mass="0.605" />
 			<joint name="Bumblebee_0" type="free" />
