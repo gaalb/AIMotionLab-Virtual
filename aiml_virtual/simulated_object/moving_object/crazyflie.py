@@ -58,11 +58,13 @@ class Crazyflie(drone.Drone):
         max_thrust = Crazyflie.MAX_THRUST
         cog = Crazyflie.COG
         drone = ET.Element("body", name=name, pos=pos, quat=quat)  # this is the parent element
+        # this is the main body of the crazyflie (from mesh)
         ET.SubElement(drone, "geom", name=name + "_body", type="mesh", mesh="crazyflie_body", rgba=color)
+        # this is a geom created by making 4 motormounts placed in the right position
         ET.SubElement(drone, "geom", name=name + "_4_motormounts", type="mesh", mesh="crazyflie_4_motormounts",
                       rgba=color)
+        # this is a geom created by making 4 motors placed in the right position
         ET.SubElement(drone, "geom", name=name + "_4_motors", type="mesh", mesh="crazyflie_4_motors", rgba=color)
-
         ret = {"worldbody": [drone],
                "actuator": [],
                "sensor": []}
@@ -75,28 +77,21 @@ class Crazyflie(drone.Drone):
         site_name = name + "_cog"
         ET.SubElement(drone, "site", name=site_name, pos="0 0 0", size="0.005")  # center of gravity
         prop_site_size = "0.0001"
-        prop_mass = "0.00001"
+        prop_mass = "0.00001"  # mass of the propeller is approximately zero it seems
         prop_pos = [f"{Lx2} -{Ly} {Lz}",
                     f"-{Lx1} -{Ly} {Lz}",
                     f"-{Lx1} {Ly} {Lz}",
                     f"{Lx2} {Ly} {Lz}"]
-        for i in range(4):
+        for i, propeller in enumerate(self.propellers):
             prop_name = f"{name}_prop{i}"
             prop_body = ET.SubElement(drone, "body", name=prop_name)
             ET.SubElement(prop_body, "joint", name=prop_name, axis="0 0 1", pos=prop_pos[i])
             ET.SubElement(drone, "site", name=prop_name, pos=prop_pos[i], size=prop_site_size)
-            if i % 2 == 0:
-                mesh = "crazyflie_ccw_prop"
-                actuator = ET.Element("general", site=prop_name, name=f"{name}_actr{i}",
-                                      gear=f" 0 0 1 0 0 {motor_param}",
-                                      ctrllimited="true", ctrlrange=f"0 {max_thrust}")
-                ret["actuator"].append(actuator)
-            else:
-                mesh = "crazyflie_cw_prop"
-                actuator = ET.Element("general", site=prop_name, name=f"{name}_actr{i}",
-                                      gear=f" 0 0 1 0 0 -{motor_param}",
-                                      ctrllimited="true", ctrlrange=f"0 {max_thrust}")
-                ret["actuator"].append(actuator)
+            mesh = f"crazyflie_{propeller.dir_mesh}_prop"
+            actuator = ET.Element("general", site=prop_name, name=f"{name}_actr{i}",
+                                  gear=f"0 0 1 0 0 {propeller.dir_str}{motor_param}",
+                                  ctrllimited="true", ctrlrange=f"0 {max_thrust}")
+            ret["actuator"].append(actuator)
             ET.SubElement(prop_body, "geom", name=prop_name, type="mesh", mesh=mesh, mass=prop_mass,
                           pos=prop_pos[i], rgba=Crazyflie.PROP_COLOR)
         ret["sensor"].append(ET.Element("gyro", site=site_name, name=name + "_gyro"))

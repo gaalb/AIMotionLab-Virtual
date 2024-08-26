@@ -76,10 +76,10 @@
 		<motor name="Bicycle_0_actr" joint="Bicycle_0_wheelr" />
 		<motor name="Bicycle_1_actr" joint="Bicycle_1_wheelr" />
 		<motor name="Bicycle_2_actr" joint="Bicycle_2_wheelr" />
-		<general site="Crazyflie_0_prop0" name="Crazyflie_0_actr0" gear=" 0 0 1 0 0 0.02514" ctrllimited="true" ctrlrange="0 0.16" />
-		<general site="Crazyflie_0_prop1" name="Crazyflie_0_actr1" gear=" 0 0 1 0 0 -0.02514" ctrllimited="true" ctrlrange="0 0.16" />
-		<general site="Crazyflie_0_prop2" name="Crazyflie_0_actr2" gear=" 0 0 1 0 0 0.02514" ctrllimited="true" ctrlrange="0 0.16" />
-		<general site="Crazyflie_0_prop3" name="Crazyflie_0_actr3" gear=" 0 0 1 0 0 -0.02514" ctrllimited="true" ctrlrange="0 0.16" />
+		<general site="Crazyflie_0_prop0" name="Crazyflie_0_actr0" gear="0 0 1 0 0 0.02514" ctrllimited="true" ctrlrange="0 0.16" />
+		<general site="Crazyflie_0_prop1" name="Crazyflie_0_actr1" gear="0 0 1 0 0 -0.02514" ctrllimited="true" ctrlrange="0 0.16" />
+		<general site="Crazyflie_0_prop2" name="Crazyflie_0_actr2" gear="0 0 1 0 0 0.02514" ctrllimited="true" ctrlrange="0 0.16" />
+		<general site="Crazyflie_0_prop3" name="Crazyflie_0_actr3" gear="0 0 1 0 0 -0.02514" ctrllimited="true" ctrlrange="0 0.16" />
 	</actuator>
 	<sensor>
 		<velocimeter site="Bicycle_0_cog" name="Bicycle_0_velocimeter" />

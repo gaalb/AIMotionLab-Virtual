@@ -59,7 +59,7 @@ class SimulatedObject(ABC):
 
     # TODO: this probably won't be control step: rename i and control step to something more representative
     @abstractmethod
-    def update(self, i: int, step: float) -> None:
+    def update(self, mj_step_count: int, step: float) -> None:
         pass
 
     @abstractmethod

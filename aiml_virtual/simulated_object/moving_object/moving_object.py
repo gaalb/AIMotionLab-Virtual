@@ -28,7 +28,7 @@ class MovingObject(simulated_object.SimulatedObject):
         pass
 
     @abstractmethod
-    def update(self, i: int, step: float) -> None:
+    def update(self, mj_step_count: int, step: float) -> None:
         pass
 
     @abstractmethod
