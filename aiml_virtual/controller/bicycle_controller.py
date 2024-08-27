@@ -12,7 +12,7 @@ class BicycleController(controller.Controller):
     """
     Dummy controller to be used with the Bicycle class: it always turns the wheels with an even torque.
     """
-    def __init__(self, torque: float):
+    def __init__(self, torque: float = 0.01):
         """
         Constructor that sets the target torque for the bicycle.
 

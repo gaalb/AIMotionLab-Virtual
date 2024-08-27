@@ -1,3 +1,10 @@
+"""
+This module implements the base class for objects in the simulation that we also want to manipluate in python.
+
+Classes:
+    SimulatedObject
+"""
+
 import xml.etree.ElementTree as ET
 from abc import ABC, abstractmethod
 from typing import Optional, Type

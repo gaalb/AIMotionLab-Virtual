@@ -25,22 +25,20 @@ extensions = [
     'sphinx.ext.todo',      # Support for TODOs
     'sphinx.ext.autosummary',
 ]
-
 autodoc_default_options = {
     'members': True,
     'undoc-members': True,
     'show-inheritance': True,
-    'private-members': False
+    'private-members': False,
+    'no-value': True
 }
-
+todo_include_todos = True
 templates_path = ['_templates']
 exclude_patterns = []
 
-
-
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
-pygments_style = "native"  # Or "monokai", "dracula", etc.
+pygments_style = "dracula"  # Or "monokai", "dracula", etc.
 highlight_language = "python"  # Adjust according to your primary language
 html_theme = 'furo'
 html_static_path = ['_static']

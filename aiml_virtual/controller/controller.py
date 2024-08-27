@@ -27,6 +27,6 @@ class Controller(ABC):
     @abstractmethod
     def compute_control(self, *args, **kwargs) -> Any:
         """
-        Concrete subclasses must implement this method.
+        Concrete subclasses must implement this method: it's going to get called once per control loop.
         """
         pass

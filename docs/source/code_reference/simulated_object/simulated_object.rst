@@ -14,4 +14,4 @@ Modules
 
 simulated_object.py
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-.. automodule:: aiml_virtual.simulated_object
+.. automodule:: aiml_virtual.simulated_object.simulated_object

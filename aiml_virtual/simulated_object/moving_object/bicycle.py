@@ -25,7 +25,7 @@ class Bicycle(moving_object.MovingObject):
     # todo: types
     def update(self, mj_step_count: int, step: float) -> None:
         if self.controller:
-            self.ctrl[0] = self.controller.compute_control(mj_step_count)
+            self.ctrl[0] = self.controller.compute_control()
 
     def create_xml_element(self, pos: str, quat: str, color: str) -> dict[str, list[ET.Element]]:
         name = self.name

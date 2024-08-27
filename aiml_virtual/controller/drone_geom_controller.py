@@ -1,3 +1,9 @@
+"""
+This module implements the geometric control for drones, as designed by Dr. PhD Antal Péter.
+
+Classes:
+    GeomControl
+"""
 import numpy as np
 from scipy.spatial.transform import Rotation
 
@@ -5,21 +11,54 @@ from aiml_virtual.controller import controller
 
 
 class GeomControl(controller.Controller):
-    def __init__(self, mass, inertia, gravity, k_r=0.15, k_v=0.2, k_R=0.007, k_w=0.0015):
+    """
+    Geometric control for drones. Its output is corresponding to ControlModeForceTorque in the crazyflie firmware.
+
+    Attributes:
+        k_r (float): position error gain
+        k_v (float): velocity error gain
+        k_R (float): orientation error gain
+        k_w (float): angular velocity error gain
+        mass (np.ndarray): mass of the controlled drone, as read from the mujoco model (hence it's a np.ndarray)
+        inertia (np.ndarray): the diagonal elements of the inertia of the drone, as read from the mujoco model
+        gravity (np.ndarray): the gravity in the mujoco model
+
+    .. todo::
+        Might want to reevaluate what gets passed in the initializer: may want to save a reference to the controlled
+        object (a SimulatedObject).
+
+    .. note::
+       The commenting and docstrings in this controller are somewhat sparse.
+    """
+    def __init__(self, mass: np.ndarray, inertia: np.ndarray, gravity: np.ndarray, k_r: float = 0.15, k_v: float = 0.2,
+                 k_R: float = 0.007, k_w: float = 0.0015):
+        """
+        Constructor that merely saves the initialization variables.
+
+        .. note::
+            Default values for the gains are ideal for a crazyflie geom control.
+        """
         super().__init__()
-        self.k_r = k_r
-        self.k_v = k_v
-        self.k_R = k_R
-        self.k_w = k_w
-        self.mass = mass
-        self.inertia = inertia
-        self.gravity = gravity
+        self.k_r: float = k_r
+        self.k_v: float = k_v
+        self.k_R: float = k_R
+        self.k_w: float = k_w
+        self.mass: np.ndarray = mass
+        self.inertia: np.ndarray = inertia
+        self.gravity: np.ndarray = gravity
 
-    def compute_control(self, *args, **kwargs):
-        state = kwargs["state"]
-        setpoint = kwargs["setpoint"]
-        time = kwargs["time"]
+    def compute_control(self, state: dict[str, np.ndarray], setpoint: dict[str, np.ndarray]) -> np.ndarray:
+        """
+        Overrides (implements) superclass' compture_control, ensuring GeomControl is a concrete class. Computes target
+        thrust and torques.
 
+        Args:
+            state (dict[str, np.ndarray]): the state of the drone
+            setpoint (dict[str, np.ndarray]): the setpoint calculated by the trajectory
+
+        Returns:
+            np.ndarray: The target force, and torques in x, y, z order.
+        """
         cur_pos = state['pos']
         cur_quat = state['quat']
         cur_vel = state['vel']
@@ -87,7 +126,9 @@ class GeomControl(controller.Controller):
 
     @staticmethod
     def _quat_mult(quaternion1, quaternion0):
-        """Multiply two quaternions in scalar last form"""
+        """
+        Multiply two quaternions in scalar last form
+        """
         x0, y0, z0, w0 = quaternion0
         x1, y1, z1, w1 = quaternion1
         return np.array([-x1 * x0 - y1 * y0 - z1 * z0 + w1 * w0,
@@ -97,7 +138,9 @@ class GeomControl(controller.Controller):
 
     @staticmethod
     def _quat_conj(quat):
-        """Return conjugate of a quaternion in scalar last form"""
+        """
+        Return conjugate of a quaternion in scalar last form
+        """
         return np.array([-quat[0], -quat[1], -quat[2], quat[3]])
 
     def stability_analysis(self, k_r, k_v, k_R, k_w, c1, c2, J, m, eps=None):
@@ -127,14 +170,14 @@ class GeomControl(controller.Controller):
 
     @staticmethod
     def _my_cross(r3):
-        '''
+        """
         Simplify cross product if the second vector is [0, 0, 1].
-        '''
+        """
         return np.array([0, r3[2], -r3[1]])
 
     @staticmethod
     def _my_cross_2(a, b):
-        '''
+        """
         Simplify cross product if the first vector is [0, a2, a3].
-        '''
+        """
         return np.array([a[1] * b[2] - a[2] * b[1], a[2] * b[0], -a[1] * b[0]])

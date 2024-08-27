@@ -9,8 +9,6 @@ from aiml_virtual.simulated_object.moving_object import moving_object
 from aiml_virtual.controller import controller, drone_geom_controller
 from aiml_virtual.trajectory import trajectory, dummy_drone_trajectory
 
-PROP_LARGE_COLOR = "0.1 0.02 0.5 1.0"
-
 
 class Propeller:
     DIR_NEGATIVE = -1.0
@@ -88,8 +86,8 @@ class Drone(moving_object.MovingObject):
         # todo: check this as compared to the original when cleaning up
         self.spin_propellers()
         if self.trajectory:
-            setpoint = self.trajectory.evaluate(self.state, mj_step_count, step, self.data.time)
-            self.ctrl_input = self.controller.compute_control(state=self.state, setpoint=setpoint, time=self.data.time)
+            setpoint = self.trajectory.evaluate(self.data.time)
+            self.ctrl_input = self.controller.compute_control(state=self.state, setpoint=setpoint)
             motor_thrusts = self.input_matrix @ self.ctrl_input
             for propeller, thrust in zip(self.propellers, motor_thrusts):
                 propeller.ctrl[0] = thrust
