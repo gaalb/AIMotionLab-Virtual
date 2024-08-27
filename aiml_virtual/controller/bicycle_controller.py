@@ -1,9 +1,32 @@
+"""
+This module houses the BicycleController, which is a dummy controller for testing.
+
+Classes:
+    BicycleController
+"""
+
 from aiml_virtual.controller import controller
 
 
 class BicycleController(controller.Controller):
-    def __init__(self):
-        super().__init__()
+    """
+    Dummy controller to be used with the Bicycle class: it always turns the wheels with an even torque.
+    """
+    def __init__(self, torque: float):
+        """
+        Constructor that sets the target torque for the bicycle.
 
-    def compute_control(self, *args, **kwargs) -> float:
-        return 0.02
+        Args:
+            torque (float): The torque for the motors of the wheels to hold.
+        """
+        super().__init__()
+        self.torque = torque
+
+    def compute_control(self) -> float:
+        """
+        Overrides (implements) superclass' compture_control, ensuring that BycicleController is a concrete class.
+
+        Returns:
+            float: The torque to be used for the motors.
+        """
+        return self.torque

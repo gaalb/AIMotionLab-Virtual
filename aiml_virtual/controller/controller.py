@@ -1,15 +1,32 @@
+"""
+This module houses the Controller class, which serves as a base for all controller types.
+
+Classes:
+    Controller
+"""
+
 from abc import ABC, abstractmethod
 from typing import Any
 
 
 class Controller(ABC):
+    """
+    Base class for all controllers.
+
+    Controllers may vary widely in actual implementation: they may produce different outputs (thrust+torque, or
+    maybe rpy rate, etc.) and also take different inputs (e.g. one may take only position, velocity and acceleration
+    into account, another one may also look at jerk). To this end, this base class is relatively plain, leaving the
+    concrete implementation in the hands of the actual subclasses.
+    """
     def __init__(self):
+        """
+        Constructor left empty due to great variance in actual implementations.
+        """
         pass
 
-    # All controllers will have different inputs and outputs as per the nature of controllers. For this reason, in this
-    # controller, I think I'm leaving the signature flexible: might change it later.
-    # It bears mentioning that an actual controller makes sense, instead of a simple controller function, as
-    # by making it an object, we can assign state to it, such as an integrator.
     @abstractmethod
-    def compute_control(self, *args, **kwargs) -> Any:  # Todo: any?
+    def compute_control(self, *args, **kwargs) -> Any:
+        """
+        Concrete subclasses must implement this method.
+        """
         pass

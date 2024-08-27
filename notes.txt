@@ -45,11 +45,9 @@ szépen sorban:
 -type hint-eket rendesen megcsinálni, és kommentezni (lesz rá még second pass a docstring írásnál)
 -egységesíteni minden movingobject-hez tartozó dolgot: trajectory, controller, stb
 -megcsinálni a sphinx dolgokat
+----------------------------------------------------------------------------------------------------------------------------------------------
+sphinx:
 
----------------------------------------------------------------------------------------------------------------------------------------------
-
--controllernek más gainek kellenek szituációtól (dróntól) függően, de amúgy is jó lenne egy flexibilis beállítás->set_gains?
-TODO: dummy controllernek valami setup: tartson setpointot vagy valami hasonló?
 
 
 
